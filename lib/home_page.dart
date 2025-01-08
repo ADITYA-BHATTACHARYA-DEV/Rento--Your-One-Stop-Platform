@@ -90,7 +90,8 @@ class HomePage extends StatelessWidget{
               );
             }, 
             separatorBuilder: (context,index)=> const SizedBox(width: 15),
-             itemCount:5) ,),
+             itemCount:5) 
+             ,),
         Container(
           margin:const EdgeInsets.only(top:10),
        constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height*0.7),
@@ -250,7 +251,10 @@ decoration: BoxDecoration(
   color: theme.colorScheme.secondaryContainer.withOpacity(0.5),
   borderRadius: BorderRadius.circular(10),
 ),
-child: Row(children: [
+child: Row(
+  crossAxisAlignment:CrossAxisAlignment.start,
+  
+  children: [
 Container(
   width:50,
   height: 50,
@@ -263,6 +267,41 @@ Container(
 child: Image.asset(""),
 ),
 
+Flexible(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Text("Craftsman Cordless Drill ",
+      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+      
+      ),
+    ),
+    Row(children: [
+      Icon(IconlyBold.location, size:16),
+      Text("4.0km"),
+      Padding(padding: EdgeInsets.symmetric(horizontal: 8.0),
+      child:Text("\$5.00 /hr"),
+      ),
+      Icon(IconlyBold.star,
+      size: 16, color: theme.colorScheme.primary),
+      Text(
+        "4.9",
+        style: TextStyle(color: theme.colorScheme.primary),
+      )
+    ],
+    )
+  
+  
+  
+  
+  ]
+  ,),
+),
+IconButton(onPressed: () {},icon: Icon(Icons.favorite)),
+
+
 ],)
 
 
@@ -273,6 +312,44 @@ child: Image.asset(""),
         ),
       ],
 ),
+    bottomNavigationBar: BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+
+      type: BottomNavigationBarType.fixed,
+      items: 
+    [
+      BottomNavigationBarItem(icon: Icon(IconlyLight.category),
+      label: "Home",),
+
+       BottomNavigationBarItem(icon: Icon(Icons.favorite),
+      label: "Search"),
+       BottomNavigationBarItem(icon: Icon(Icons.chat_bubble_outline_outlined),
+      label: "Chat"),
+       BottomNavigationBarItem(icon: Icon(IconlyLight.profile),
+      label: "Home",),
+    ],
+    ),
+
+   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+   floatingActionButton: DecoratedBox(
+    decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+
+      boxShadow: [
+        BoxShadow(
+          color: theme.colorScheme.primary.withOpacity(0.5),
+          spreadRadius: 5,
+        ),
+      ],
+    ),
+   child: FloatingActionButton(onPressed: () {},
+   elevation:0,
+   backgroundColor: theme.colorScheme.primary,
+   foregroundColor: theme.colorScheme.onPrimary,
+   child: Icon(Icons.add),
+   )
+   ),
      );
 
   }
