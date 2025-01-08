@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_launcher_icons: ^0.14.2
   iconly: ^1.0.1
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:

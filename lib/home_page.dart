@@ -2,6 +2,7 @@ import  'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:task5/data/categories.dart';
 import 'package:task5/data/products.dart';
+import 'package:task5/pages/product_details_page.dart';
 
 
 class HomePage extends StatelessWidget{
@@ -57,9 +58,10 @@ class HomePage extends StatelessWidget{
 
 
         SizedBox(
-          height: 90,
+          height:220,
           child:ListView.separated(
             scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.only(left: 16),
             itemBuilder: (context,index){
               final category=categories[index];
               return Container(
@@ -129,104 +131,115 @@ class HomePage extends StatelessWidget{
           padding: EdgeInsets.only(left:16),
           itemBuilder:(context,index){
             final product =products[index];
-return SizedBox(
-width: 130,
-child: Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
+return GestureDetector(
+  onTap:(){ 
+  Navigator.push(context,
+   MaterialPageRoute
+  (
+    builder: (context)=> ProductDetailsPage(product:product),
+  ),
+  );
+  },
 
-Container(
-  margin:const
-   EdgeInsets.only(bottom: 10),
-  width: double.maxFinite,
-  height: 130,
-  decoration: BoxDecoration(
-    color: Colors.grey.shade100,
-    borderRadius: BorderRadius.circular(20),
-    image: DecorationImage(image: AssetImage(product.image),
-
-
-
-  )
-),
-child: 
-Padding(
-  padding: const EdgeInsets.all(8.0),
+  child: SizedBox(
+  width: 130,
   child: Column(
-
-    crossAxisAlignment: CrossAxisAlignment.end,
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      SizedBox(
-        width: 30,
-        height: 30,
-        child: IconButton.filledTonal(onPressed: () {},
-         icon:Icon(
-              Icons.favorite,
-        ),
-        padding: EdgeInsets.zero,
-        iconSize: 18,
-        ),
-      ),
-
-
-
-    const Row(
-mainAxisSize: MainAxisSize.min,
-children: [Icon(
-  IconlyLight.star,
-  size: 16,
-  color: Colors.deepOrange,
-
-),
-SizedBox(
-  width: 4,
-),
-Text("4.9"),
-],
-
+  
+  Container(
+    margin:const
+     EdgeInsets.only(bottom: 10),
+    width: double.maxFinite,
+    height: 130,
+    decoration: BoxDecoration(
+      color: Colors.grey.shade100,
+      borderRadius: BorderRadius.circular(20),
+      image: DecorationImage(image: AssetImage(product.image),
+  
+  
+  
     )
-
-      // Icon(IconlyLight.heart),
+  ),
+  child: 
+  Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+  
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: 30,
+          height: 30,
+          child: IconButton.filledTonal(onPressed: () {},
+           icon:Icon(
+                Icons.favorite,
+          ),
+          padding: EdgeInsets.zero,
+          iconSize: 18,
+          ),
+        ),
+  
+  
+  
+      const Row(
+  mainAxisSize: MainAxisSize.min,
+  children: [Icon(
+    IconlyLight.star,
+    size: 16,
+    color: Colors.deepOrange,
+  
+  ),
+  SizedBox(
+    width: 4,
+  ),
+  Text("4.9"),
+  ],
+  
+      )
+  
+        // Icon(IconlyLight.heart),
+      ],
+    ),
+  )
+  ,
+  ),
+  
+  Padding(
+    padding: const EdgeInsets.only(bottom: 5.0),
+    child: Text(
+      product.name,
+      style: theme.textTheme.titleMedium
+      ?.copyWith(
+        fontWeight:FontWeight.bold, 
+      ),
+      maxLines: 2,
+      overflow:TextOverflow.ellipsis,
+    ),
+  ),
+  //Location
+  //Price
+  Text.rich(
+  TextSpan(
+    children:[ 
+  TextSpan(
+    style: theme.textTheme.bodySmall?.copyWith(
+      fontWeight: FontWeight.bold),
+      text:"\Rs${product.price}",
+  ),
+      TextSpan(
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: Colors.grey.shade600),
+        text: " / hr ",
+      )
+    ],
+    ),
+  ),
     ],
   ),
-)
-,
-),
-
-Padding(
-  padding: const EdgeInsets.only(bottom: 5.0),
-  child: Text(
-    product.name,
-    style: theme.textTheme.titleMedium
-    ?.copyWith(
-      fontWeight:FontWeight.bold, 
-    ),
-    maxLines: 2,
-    overflow:TextOverflow.ellipsis,
+  
   ),
-),
-//Location
-//Price
-Text.rich(
-TextSpan(
-  children:[ 
-TextSpan(
-  style: theme.textTheme.bodySmall?.copyWith(
-    fontWeight: FontWeight.bold),
-    text:"\Rs${product.price}",
-),
-    TextSpan(
-      style: theme.textTheme.bodySmall?.copyWith(
-        color: Colors.grey.shade600),
-      text: " / hr ",
-    )
-  ],
-  ),
-),
-  ],
-),
-
 );
 
           },
