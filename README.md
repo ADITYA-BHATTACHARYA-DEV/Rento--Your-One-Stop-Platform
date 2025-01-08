@@ -1,4 +1,4 @@
-# task5
+# Rento - Your One Stop Platform for renting your obselete household items
 
 A new Flutter project.
 
